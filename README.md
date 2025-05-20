@@ -6,6 +6,10 @@ Background story: I was annoyed by my meistertask subscription - again. Way too 
 
 > _Shut up and code, eventually!_
 
+## Goal
+
+![alt text](./doc/image.png)
+
 ## Setup
 
 ```bash
