@@ -1,0 +1,92 @@
+# =================================================================================
+
+# ALIASES
+
+# =================================================================================
+
+# ---------------------------------------------------------------------------------
+
+# GAC: Alt+G = Pre-fill commit message | Alt + G
+
+# ---------------------------------------------------------------------------------
+
+git_add_commit_prefill() {
+READLINE_LINE="git add . && git commit -m ''"
+READLINE_POINT=28
+}
+if [ -n "$BASH_VERSION" ]; then
+bind -x '"\eg":git_add_commit_prefill'
+fi
+
+# ---------------------------------------------------------------------------------
+
+# GAC: Typed command gac
+
+# ---------------------------------------------------------------------------------
+
+gac() {
+git add .
+echo "Enter commit message:"
+read -r msg
+git commit -m "$msg"
+}
+
+# ---------------------------------------------------------------------------------
+
+# GACP: Alt+V or type gacp | Alt + V
+
+# ---------------------------------------------------------------------------------
+
+gacp() {
+read -e -p "Commit message: " msg && git add . && git commit -m "$msg" && git push
+}
+if [ -n "$BASH_VERSION" ]; then
+bind -x '"\ev":gacp'
+fi
+
+# ---------------------------------------------------------------------------------
+
+# Git alias - git push - gp
+
+# ---------------------------------------------------------------------------------
+
+alias gp='git push'
+
+# ---------------------------------------------------------------------------------
+
+# GCMM: Merge current branch into main
+
+# ---------------------------------------------------------------------------------
+
+gcmm() {
+current_branch=$(git symbolic-ref --short HEAD)
+    if [ "$current_branch" = "main" ]; then
+echo "You're already on 'main'. Cannot merge 'main' into itself."
+return 1
+fi
+echo "Merging '$current_branch' into 'main'..."
+    git checkout main && git merge "$current_branch"
+}
+
+# Optional: bind -x '"\em":gcmm'
+
+# ---------------------------------------------------------------------------------
+
+# GB: Create and switch to new branch | Alt + B
+
+# ---------------------------------------------------------------------------------
+
+gb() {
+read -e -p "New branch name: " branch
+if [ -z "$branch" ]; then
+echo "Branch name cannot be empty."
+return 1
+fi
+git checkout -b "$branch" && echo "Switched to new branch: $branch"
+}
+
+# =================================================================================
+
+# End ALIASES
+
+# =================================================================================

@@ -1,38 +1,19 @@
-import { Routes, Route, Link } from "react-router-dom";
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-  RedirectToSignIn,
-} from "@clerk/clerk-react";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/clerk-react";
 
-import Home from "./pages/Home.jsx";
-import Today from "./pages/Today.jsx";
-import Archive from "./pages/Archive.jsx";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import Today from "./pages/Today";
+import Archive from "./pages/Archive";
 
 export default function App() {
   return (
-    <div>
-      <nav style={{ padding: "0.5rem", borderBottom: "1px solid #ccc" }}>
-        <Link to="/">🏠 Home</Link> | <Link to="/today">📅 Today</Link> |{" "}
-        <Link to="/archive">🗃️ Archive</Link>
-        <span style={{ float: "right" }}>
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
-          <SignedOut>
-            <SignInButton mode="modal" />
-          </SignedOut>
-        </span>
-      </nav>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
 
         <Route
-          path="/today"
+          path="today"
           element={
             <>
               <SignedIn>
@@ -46,7 +27,7 @@ export default function App() {
         />
 
         <Route
-          path="/archive"
+          path="archive"
           element={
             <>
               <SignedIn>
@@ -58,7 +39,7 @@ export default function App() {
             </>
           }
         />
-      </Routes>
-    </div>
+      </Route>
+    </Routes>
   );
 }
