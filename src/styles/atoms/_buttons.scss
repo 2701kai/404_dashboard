@@ -1,0 +1,14 @@
+button {
+  background: none;
+  border: 1px solid $accent;
+  color: $accent;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  margin-left: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background: $accent;
+    color: $bg;
+  }
+}

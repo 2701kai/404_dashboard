@@ -8,8 +8,8 @@ import {
 
 export default function Layout() {
   return (
-    <>
-      <header style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
+    <div className="app-container">
+      <header>
         <NavLink to="/">🏠 Home</NavLink> |{" "}
         <NavLink to="/today">📅 Today</NavLink> |{" "}
         <NavLink to="/archive">🗃️ Archive</NavLink>
@@ -22,10 +22,9 @@ export default function Layout() {
           </SignedOut>
         </span>
       </header>
-
-      <main style={{ padding: "1rem" }}>
+      <main>
         <Outlet />
       </main>
-    </>
+    </div>
   );
 }

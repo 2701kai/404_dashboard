@@ -1,0 +1,84 @@
+@import './variables';
+@import './organisms/layout';
+@import './atoms/buttons';
+@import './molecules/card';
+
+
+
+// 🎨 Color Variables
+$bg: #1e1e1e;
+$text: #f2f2f2;
+$accent: #ff4d6d;
+$highlight: #ffd700;
+$nav-bg: #2a2a2a;
+$link-hover: lighten($accent, 15%);
+
+// 🔤 Global Reset
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: $bg;
+  color: $text;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+// 📌 Navbar
+nav {
+  background: $nav-bg;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  a {
+    color: $accent;
+    margin-right: 1rem;
+    text-decoration: none;
+    font-weight: 500;
+
+    &.active {
+      font-weight: bold;
+    }
+
+    &:hover {
+      color: $link-hover;
+    }
+  }
+
+  button {
+    background: none;
+    border: 1px solid $accent;
+    color: $accent;
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    margin-left: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background: $accent;
+      color: $bg;
+    }
+  }
+}
+
+a {
+  color: #b8fa02b0; // pale gray default
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    color: #ff4100;
+  }
+
+  &.active {
+    font-weight: bold;
+    color: #f05521b4;
+  }
+}
+
+
+// 🧱 Main Content Wrap
