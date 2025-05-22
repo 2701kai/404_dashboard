@@ -5,14 +5,32 @@ const InstagramEmbed = () => {
   const embedRef = useRef(null);
 
   useEffect(() => {
-    if (!window.instgrm) {
+    const loadInstagramEmbed = () => {
+      console.log("✅ Processing Instagram embed...");
+      if (window.instgrm) {
+        window.instgrm.Embeds.process();
+      } else {
+        console.warn("⚠️ instgrm not yet defined");
+      }
+    };
+
+    const existingScript = document.querySelector(
+      'script[src="https://www.instagram.com/embed.js"]'
+    );
+
+    if (!existingScript) {
+      console.log("📦 Adding Instagram embed script...");
       const script = document.createElement("script");
       script.src = "https://www.instagram.com/embed.js";
       script.async = true;
-      script.onload = () => window.instgrm.Embeds.process();
+      script.onload = () => {
+        console.log("✅ Instagram embed script loaded.");
+        loadInstagramEmbed();
+      };
       document.body.appendChild(script);
     } else {
-      window.instgrm.Embeds.process();
+      console.log("⏳ Script already present, attempting embed...");
+      loadInstagramEmbed();
     }
   }, []);
 
@@ -27,11 +45,11 @@ const InstagramEmbed = () => {
           border: 0,
           borderRadius: 3,
           boxShadow: "0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)",
-          margin: "1px",
+          margin: "1px auto",
           maxWidth: "540px",
           minWidth: "326px",
           padding: 0,
-          width: "calc(100% - 2px)",
+          width: "99%",
         }}
       ></blockquote>
     </div>

@@ -2,8 +2,10 @@
   display: flex;
   justify-content: center;
   padding: 1rem;
+
   blockquote.instagram-media {
-    margin: auto;
     width: 100%;
+    max-width: 540px;
+    min-width: 326px;
   }
 }
