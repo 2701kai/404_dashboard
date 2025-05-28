@@ -1,0 +1,33 @@
+# ✅ Add Login/Logout Button with CLERK
+
+Update your `Layout.jsx` header area to this:
+
+```jsx
+<SignedIn>
+  <UserButton />
+  <button onClick={() => clerk.signOut()} style={{ marginLeft: "1rem" }}>
+    Logout
+  </button>
+</SignedIn>
+<SignedOut>
+  <SignInButton mode="modal" />
+</SignedOut>
+```
+
+Also import:
+
+```js
+import { useClerk } from "@clerk/clerk-react";
+```
+
+And inside your component:
+
+```js
+const { clerk } = useClerk();
+```
+
+✅ Now you have a manual logout button beside the Clerk `UserButton`.
+
+---
+
+> Optional:<br>**[Confetti on Login](../Login-Confetti-on-success/Confetti-after-login.md)**

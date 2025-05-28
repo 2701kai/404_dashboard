@@ -1,14 +1,13 @@
 import { useEffect } from "react";
-
 import { Routes, Route } from "react-router-dom";
 import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/clerk-react";
+
+import ConfettiOnLogin from "./components/atoms/ConfettiOnLogin";
 
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Today from "./pages/Today";
 import Archive from "./pages/Archive";
-
-// e
 
 // just playing..
 export default function App() {
@@ -24,36 +23,39 @@ export default function App() {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route
-          path="today"
-          element={
-            <>
-              <SignedIn>
-                <Today />
-              </SignedIn>
-              <SignedOut>
-                <RedirectToSignIn />
-              </SignedOut>
-            </>
-          }
-        />
-        <Route
-          path="archive"
-          element={
-            <>
-              <SignedIn>
-                <Archive />
-              </SignedIn>
-              <SignedOut>
-                <RedirectToSignIn />
-              </SignedOut>
-            </>
-          }
-        />
-      </Route>
-    </Routes>
+    <>
+      <ConfettiOnLogin />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route
+            path="today"
+            element={
+              <>
+                <SignedIn>
+                  <Today />
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="archive"
+            element={
+              <>
+                <SignedIn>
+                  <Archive />
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn />
+                </SignedOut>
+              </>
+            }
+          />
+        </Route>
+      </Routes>
+    </>
   );
 }
